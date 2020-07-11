@@ -1,0 +1,51 @@
+<style media="screen">
+            body{
+                margin: 0;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+            strong{
+                font-weight: 700;
+            }
+            nav{
+                background-color: teal;
+            }
+
+            nav ul{
+                margin: 0;
+            }
+            nav li{
+                display: inline-block;
+            }
+            nav li a{
+                display: inline-block;
+                font-size: 16px;
+                font-weight: 300;
+                text-decoration: none;
+                padding: 15px 30px;
+                color: #000;
+                background-color: limegreen;
+                margin-right: 12px;
+
+            }
+
+            nav li a:hover{
+                background-color: rgb(10, 245, 10);
+                color: white;
+            }
+
+            #middle2{
+                margin-right: 80px;
+            }
+            #middle1{
+                margin: 0 80px;
+            }
+
+        </style>
+        <nav>
+            <ul>
+                <li><a href="{% url 'admin' %}"><strong>Home</strong></a></li>
+                <li id="middle1"><a href="{% url 'showpndg' %}">Users</a></li>
+                <li id="middle2"><a href="{% url 'add_prod' %}">Add Products</a></li>
+                <li><a href="{% url 'adlog' %}">Logout</a></li>
+            </ul>
+        </nav>

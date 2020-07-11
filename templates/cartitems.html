@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    We\Deliver | Your Cart Items
+{% endblock %}
+{% load static %}
+{% block body %}
+    {% include 'home_menu.html' %}
+    <style>
+    .head{
+        padding: 15px;
+        font-size: 15px;
+        outline: none;
+    }
+    </style>
+
+    <table align="center" border="1" style="margin-top: 25px;margin-bottom: 25px;">
+    {% if messages %}
+        {% for err in messages %}
+            <tr>
+           <th style="padding: 20px;font-size: 18px">{{ err }} <a href="{% url 'home' %}" style="text-decoration: none">Shop Now</a></th>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr style="margin-top: 10px">
+{#            <th class="head">Product ID</th>#}
+            <th class="head">Product Name</th>
+            <th class="head">Price</th>
+            <th class="head">Delete</th>
+        </tr>
+    {% for x,y in cart.items %}
+        {% if x != 'csrftoken'  %}
+        <tr>
+            <th class="head">{{ x }}</th>
+            <th class="head">{{ y }}</th>
+            <th class="head"><a href="{% url 'delcart' %}?id={{ x }}"><img src="{% static 'images/delet.png' %}" width="20" height="20"></a></th>
+        </tr>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+    </table>
+
+{% endblock %}

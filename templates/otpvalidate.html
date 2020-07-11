@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    We\Deliver | User Login
+{% endblock %}
+
+{% block body %}
+    <style>
+        input::-webkit-inner-spin-button,
+        input::-webkit-outer-spin-button{
+            -webkit-appearance: none;
+        }
+        #login{
+            padding: 20px;
+            font-size: 35px;
+            background-color: #aa00ff;
+            color: white;
+            border-top-right-radius: 20px;
+            border-top-left-radius: 20px;
+            font-family: "Arial Narrow";
+        }
+
+        .login input{
+            width: 200px;
+            height: 25px;
+        }
+        .color{
+            background-color: teal;
+        }
+
+        .login{
+            padding: 7px 5px;
+        }
+        .login button:hover{
+            background-color: lime;
+            color: #110044;
+        }
+        .login button{
+            background-color: #110044;
+            border: none;
+            border-radius: 25px;
+            padding: 5px 20px;
+            font-size: larger;
+            font-family: "Book Antiqua";
+            font-weight: bolder;
+            color: lightcyan;
+        }
+    </style>
+    {% include 'home_menu.html' %}
+
+    <form action="{% url 'otpvalidate' %}" method="post">
+    {% csrf_token %}
+
+    <table align="center" width="50%" style="padding: 15px 0">
+        <tr>
+            <th id="login">OTP Verification</th>
+        </tr>
+        <tr class="color">
+            <td class="login"><input type="number" name="otp" placeholder="Enter OTP" required></td>
+        </tr>
+        <tr class="color">
+            <th class="login"><button type="submit">Submit</button></th>
+        </tr>
+{#        <tr><td align="left"><a href="{% url '' %}">Forgot Password</a> </td></tr>#}
+        <tr>
+        <th>
+        {% if messages %}
+            {% for otperror in messages %}
+                <p style="color: red">{{ otperror }}</p>
+            {% endfor %}
+        {% endif %}
+        </th>
+        </tr>
+    </table>
+    </form>
+{% endblock %}

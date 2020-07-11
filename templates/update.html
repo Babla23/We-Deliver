@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Update Your Product
+{% endblock %}
+
+{% block body %}
+    <style>
+        input::-webkit-inner-spin-button,
+        input::-webkit-outer-spin-button{
+            -webkit-appearance: none;
+        }
+
+        .input-type{
+            padding: 5px 5px;
+        }
+
+        .input-type #file{
+            margin-left: 50px;
+        }
+        .input-type input{
+            width: 200px;
+            height: 15px;
+        }
+        .input-type textarea{
+            width: 200px;
+        }
+
+        th button{
+            margin-top: 10px;
+            background-color: #333333;
+            color: whitesmoke;
+            padding: 8px 22px;
+            border: none;
+            font-size: 15px;
+            font-family: Castellar;
+            font-weight: bold;
+            border-radius: 25px;
+            box-shadow: 6px 6px 3px gray;
+        }
+        th button:hover{
+            background-color: lime;
+            color: black;
+            font-size: 17px;
+            font-weight: bolder;
+
+        }
+    </style>
+    {% include 'adm_menu.html' %}
+
+    <form action="{% url 'new' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table align="center" width="50%" style="margin-top: 15px;margin-bottom: 15px">
+        <tr>
+            <th colspan="2" style="padding: 10px 15px;background-color: #110044;color:lightcyan;font-size: 25px;font-family: 'Footlight MT Light';letter-spacing: 3px">Update Product {{ data.modelNo }}</th>
+        </tr>
+        <tr>
+            <th class="input-type" align="right">Prod Id : </th>
+            <th class="input-type"><input type="number" value="{{ data.prodId }}" name="id" readonly></th>
+        </tr>
+        <tr>
+            <th class="input-type" align="right">Model No : </th>
+            <td class="input-type" width="60%"><input type="text" name="model" value="{{ data.modelNo }}"></td>
+        </tr>
+        <tr>
+            <th class="input-type" align="right">Brand : </th>
+            <td class="input-type" width="60%"><input type="text" name="brnd" value="{{ data.brand }}"></td>
+        </tr>
+        <tr>
+            <th class="input-type" align="right">Description : </th>
+            <td class="input-type" width="60%"><textarea cols="19" rows="5" name="desc">{{ data.desc }}</textarea> </td>
+        </tr>
+        <tr>
+            <th class="input-type" align="right">Price : </th>
+            <td class="input-type" width="60%"><input type="number" min="1" name="price" value="{{ data.price }}"></td>
+        </tr>
+        <tr>
+            <th class="input-type" align="right">Quantity : </th>
+            <td class="input-type" width="60%"><input type="number" value="{{ data.quatity }}" min="1" name="qtty"></td>
+        </tr>
+{#        <tr>#}
+{#            <th colspan="2"><input type="file" value="{{ data.photo.url }}" name="pic"></th>#}
+{#        </tr>#}
+        <tr>
+            <th colspan="2"><button type="submit">Update</button> </th>
+        </tr>
+    </table>
+    </form>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+All Users List
+{% endblock %}
+
+{% block body %}
+    <style>
+        .page{
+            text-decoration: none;
+            color: tomato;
+        }
+        .gap{
+            padding: 10px;
+            text-align: left;
+            border: none;
+            background-color: lightblue;
+        }
+        .gap1{
+            padding: 10px;
+            background-color: lightcoral;
+        }
+        header a{
+            text-decoration: none;
+        }
+        header a:visited{
+            color: blueviolet;
+        }
+    </style>
+    {% include 'adm_menu.html' %}
+    <header style="text-align: left">
+        <ul type="circle">
+            <li style="margin-bottom: 10px"><a href="{% url 'showapprd' %}">Approved Users</a></li>
+            <li><a href="{% url 'showdclnd' %}">Declined Users</a></li>
+        </ul>
+    </header>
+    <table align="center" border="1" style="margin-top: 15px;margin-bottom: 15px">
+            <tr>
+                <th colspan="8" style="padding: 12px;font-size: 20px;background-color: rgba(138,43,226,0.61)">Pending Requests</th>
+            </tr>
+            <tr>
+                <th class="gap1" rowspan="2">ID</th>
+                <th class="gap1" rowspan="2">Name</th>
+                <th class="gap1" rowspan="2">Contact</th>
+                <th class="gap1" rowspan="2">Email</th>
+                <th class="gap1" rowspan="2">Status</th>
+                <th style="background-color: lightcoral" colspan="2">Request</th>
+                <th class="gap1" rowspan="2">Delete</th>
+            </tr>
+            <tr>
+                <th style="background-color: lightcoral">Approve</th>
+                <th style="background-color: lightcoral">Decline</th>
+            </tr>
+            {% for x in pages %}
+                <tr>
+                    <th class="gap">{{ x.id }}</th>
+                    <th class="gap">{{ x.name }}</th>
+                    <th class="gap">{{ x.number }}</th>
+                    <th class="gap">{{ x.email }}</th>
+                    <th class="gap">{{ x.status }}</th>
+                    <th style="padding: 10px;border: none;background-color: lightblue;">
+                        <a href="{% url 'approve' %}?id={{ x.id }}"><img src="{% static 'images/approve.png' %}" style="border-radius: 20px" height="30" width="30"></a>
+                    </th>
+                    <th style="padding: 10px;border: none;background-color: lightblue;">
+                        <a href="{% url 'declineuser' %}?id={{ x.id }}"><img src="{% static 'images/decl.png' %}" style="border-radius: 20px" height="30" width="30"></a>
+                    </th>
+                    <th style="padding: 10px;border: none;background-color: lightblue;">
+                        <a href="{% url 'delpdnguser' %}?id={{ x.id }}"><img src="{% static 'images/delet.png' %}" style="border-radius: 20px" height="30" width="30"></a>
+                    </th>
+                </tr>
+            {% endfor %}
+    </table>
+    {% if pages.has_previous %}
+        <a class="page" href="{% url 'showpndg' %}?page={{ pages.previous_page_number }}"><< Prev</a>
+    {% endif %} &nbsp;
+    {{ pages.number }}&nbsp;
+    {% if pages.has_next %}
+        <a class="page" href="{% url 'showpndg' %}?page={{ pages.next_page_number }}">Next>></a>
+    {% endif %}
+{% endblock %}

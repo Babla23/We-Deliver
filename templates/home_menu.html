@@ -1,0 +1,54 @@
+<style media="screen">
+            body{
+                margin: 0;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+            strong{
+                font-weight: 700;
+            }
+            nav{
+                background-color: teal;
+                border-radius: 15px ;
+            }
+
+            nav ul{
+                margin: 0;
+            }
+            nav li{
+                display: inline-block;
+            }
+            nav li a{
+                display: inline-block;
+                font-size: 16px;
+                font-weight: 300;
+                text-decoration: none;
+                padding: 15px 30px;
+                color: #000;
+                background-color: limegreen;
+                margin-right: 12px;
+
+            }
+
+            nav li a:hover{
+                background-color: rgb(10, 245, 10);
+                color: white;
+            }
+
+            #middle1{
+                margin: 0 50px;
+            }
+            #middle3{
+                margin: 0 50px;
+            }
+
+        </style>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}"><strong>Home</strong></a></li>
+                <li id="middle1"><a href="{% url 'adlog' %}">Admin</a></li>
+                <li id="middle2"><a href="{% url 'userreg' %}" >Register</a></li>
+                <li id="middle3"><a href="{% url 'uslog' %}">Login</a></li>
+                <li><a href="{% url 'cartitems' %}">
+                    Cart : {{ mycart }}</a></li>
+            </ul>
+        </nav>

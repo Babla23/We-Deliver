@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    We\Deliver | User Registration Page
+{% endblock %}
+
+{% load static %}
+{% block body %}
+    <style>
+        input::-webkit-inner-spin-button,
+        input::-webkit-outer-spin-button{
+            -webkit-appearance: none;
+        }
+        .regis{
+            padding: 5px;
+            background-color: teal;
+            border: none;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .regis input{
+            width: 180px;
+            height: 20px;
+        }
+        button{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: #222222;
+            color: whitesmoke;
+            border: none;
+            font-size: 18px;
+            border-radius: 25px;
+            padding: 5px 10px;
+        }
+
+        button:hover{
+            background-color: lime;
+            color: whitesmoke;
+        }
+    </style>
+    <script src="{% static 'js/passvalid.js' %}"></script>
+    {% include 'home_menu.html' %}
+    <form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+    <table align="center" style="margin-top: 15px; margin-bottom: 15px">
+        <tr style="background-color: #110044;color: whitesmoke;font-size: 20px">
+            <th style="padding: 15px 50px;letter-spacing: 4px;border-bottom-right-radius: 10px;border-bottom-left-radius: 10px">Create Account</th>
+        </tr>
+        <tr>
+            <td class="regis"><input type="text" placeholder="Name" name="name" required autofocus></td>
+        </tr>
+        <tr>
+            <td class="regis"><input type="number" name="no" placeholder="Number" required></td>
+        </tr>
+        <tr>
+            <td class="regis"><input type="email" name="email" placeholder="Email" required></td>
+        </tr>
+        <tr>
+            <td class="regis"><input type="password" id="pass" name="pass" placeholder="Password" required></td>
+        </tr>
+        <tr>
+            <td class="regis"><input type="password" onkeyup="pswrd()" id="cpass" name="cpass" placeholder="Confirm Password" required><br>
+                <span id="alert" style="color: red;text-align: center;font-size: 12px"></span>
+            </td>
+        </tr>
+        {% if messages %}
+            {% for loginerror in messages %}
+                <tr><th style="color: red">{{ loginerror }}.<br><a href="{% url 'uslog' %}">Goto login</a></th></tr>
+            {% endfor %}
+        {% endif %}
+        <tr>
+            <th><button type="submit">Register</button></th>
+        </tr>
+    </table>
+    </form>
+{% endblock %}

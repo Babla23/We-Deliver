@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Update Photo of ID {{ data.prodId }}
+{% endblock %}
+
+{% block body %}
+
+    {% include 'adm_menu.html' %}
+    <form action="{% url 'upphoto' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <table align="center">
+            <tr>
+                <th>Add Product Photo</th>
+            </tr>
+            <tr>
+                <input type="hidden" value="{{ data.prodId }}" name="id">
+                <th><input type="file" name="photo"></th>
+            </tr>
+            <tr>
+                <th><button type="submit">Upload</button></th>
+            </tr>
+        </table>
+    </form>
+{% endblock %}

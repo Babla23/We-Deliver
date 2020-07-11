@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Declined Requests
+{% endblock %}
+
+{% block body %}
+    <style>
+        .gap{
+            padding: 10px;
+            text-align: left;
+            border: none;
+            background-color: lightblue;
+        }
+        .gap1{
+            padding: 10px;
+            background-color: lightcoral;
+        }
+        header a{
+            text-decoration: none;
+        }
+        header a:visited{
+            color: blueviolet;
+        }
+    </style>
+    {% include 'adm_menu.html' %}
+    <header style="text-align: left">
+        <ul type="circle">
+            <li style="margin-bottom: 10px"><a href="{% url 'showpndg' %}">Pending Requests</a></li>
+            <li><a href="{% url 'showapprd' %}">Approved Users</a></li>
+        </ul>
+    </header>
+        <table align="center" border="1" style="margin-top: 15px;margin-bottom: 15px">
+            <tr>
+                <th colspan="7" style="padding: 12px;font-size: 20px;background-color: red">Declined Requests</th>
+            </tr>
+            <tr>
+                <th class="gap1">ID</th>
+                <th class="gap1">Name</th>
+                <th class="gap1">Contact</th>
+                <th class="gap1">Email</th>
+                <th class="gap1">Status</th>
+                <th class="gap1">Approve</th>
+                <th class="gap1">Delete</th>
+            </tr>
+            {% for x in dec %}
+                <tr>
+                    <th class="gap">{{ x.id }}</th>
+                    <th class="gap">{{ x.name }}</th>
+                    <th class="gap">{{ x.number }}</th>
+                    <th class="gap">{{ x.email }}</th>
+                    <th class="gap">{{ x.status }}</th>
+                    <th style="padding: 10px;border: none;background-color: lightblue;">
+                        <a href="{% url 'apprdlcnd' %}?id={{ x.id }}"><img src="{% static 'images/approve.png' %}" style="border-radius: 20px" height="30" width="30"></a>
+                    </th>
+                    <th style="padding: 10px;border: none;background-color: lightblue;">
+                        <a href="{% url 'deleteuser' %}?id={{ x.id }}"><img src="{% static 'images/delet.png' %}" style="border-radius: 20px" height="30" width="30"></a>
+                    </th>
+                </tr>
+            {% endfor %}
+        </table>
+{% endblock %}

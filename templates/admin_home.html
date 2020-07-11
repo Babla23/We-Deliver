@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    <style>
+        .arng{
+            text-align: left;
+            padding: 12px;
+        }
+    </style>
+    {% include 'adm_menu.html' %}
+    <table align="center">
+        <tr>
+            <th rowspan="5"><img src="{% static 'images/user.png' %}" height="200" width="250"></th>
+        </tr>
+        <tr>
+            <th class="arng">Name : </th> <th class="arng">Manthan</th>
+        </tr>
+        <tr>
+            <th class="arng">Contact : </th> <th class="arng">7218888785</th>
+        </tr>
+        <tr>
+            <th class="arng">Email : </th> <th class="arng">manthan@gmail.com</th>
+        </tr>
+        <tr>
+            <th class="arng">Address : </th> <th class="arng">Nagpur</th>
+        </tr>
+    </table>
+{% endblock %}

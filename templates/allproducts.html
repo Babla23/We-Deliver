@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    All Products List
+{% endblock %}
+{% load static %}
+{% block body %}
+    <style>
+    .middle{
+        border-color: red;
+    }
+    #see:visited{
+        color: blue;
+    }
+    #see{
+        text-decoration: none;
+    }
+    .img{
+        margin-top: 2px;
+    }
+    </style>
+    {% include 'adm_menu.html' %}
+    <table align="center" width="100%" style="margin-top: 20px;margin-bottom: 20px" border="1">
+        <tr>
+            <th>ID</th>
+            <th>Model</th>
+            <th>Company</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Photo</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for x in all %}
+            <tr>
+                <th class="middle">{{ x.prodId }}</th>
+                <th class="middle">{{ x.modelNo }}</th>
+                <th class="middle">{{ x.brand }}</th>
+                <th class="middle">{{ x.price }}</th>
+                <th class="middle">{{ x.quatity }}</th>
+                <th class="middle"><img class="img" src="{{ x.photo.url }}" height="50" width="50"></th>
+                <th class="middle">{{ x.pdate }}</th>
+                <th class="middle">{{ x.status }}</th>
+                <th class="middle">
+                    <a id="see" href="{% url 'update' %}?id={{ x.prodId }}">Update</a>
+                </th>
+                <th class="middle"><a href="{% url 'delete' %}?id={{ x.prodId }}"><img src="{% static 'images/delete.png' %}" width="20" height="20"></a></th>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

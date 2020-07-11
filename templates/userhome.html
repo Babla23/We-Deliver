@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    We Deliver | Home Page
+{% endblock %}
+
+{% block body %}
+    <style>
+        .det{
+            text-align: left;
+            border: none;
+            width: 40%;
+        }
+    </style>
+    {% include 'user_menu.html' %}
+
+    {% for x in prods %}
+        <table align="center" style="margin-top: 30px;border-width: 1px" width="50%">
+            <tr>
+                <th rowspan="4" width="30%"><img src="{{ x.photo.url }}" width="100" height="100"></th>
+            </tr>
+            <tr>
+                <th class="det">Model No : </th > <th class="det">{{ x.modelNo }}</th>
+            </tr>
+            <tr>
+                <th class="det">Company : </th> <th class="det">{{ x.brand }}</th>
+            </tr>
+            <tr>
+                <th class="det">Price : </th> <th class="det">{{ x.price }}</th>
+            </tr>
+            <tr>
+                <form action="{% url 'useritems' %}">
+                   <th colspan="3">
+                       <input type="hidden" name="id" value="{{ x.prodId }}">
+                       <input type="hidden" name="model" value="{{ x.modelNo }}">
+                   <button type="submit" style="background-color: #333333;color: snow;font-weight: bolder;padding: 10px 15px;border: none;border-radius: 20px">Add to Cart</button>
+                   </th>
+                </form>
+            </tr>
+        </table>
+    {% endfor %}
+
+{% endblock %}
